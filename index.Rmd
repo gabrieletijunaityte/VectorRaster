@@ -28,11 +28,11 @@ code[class^="sourceCode bash"]::before { content: "Bash Source"; }
 # Vector - Raster
 
 ## Learning objectives
-* Plot spatial vector and raster data
-* Transform vector and raster data
-* Write and read spatial vector formats (e.g. KML, GML, GeoJSON, shapefile);
-* Apply basic operations on vector data, such as masking, cropping
-* Be able to extract raster data using vector data
+* Plot spatial vector and raster data;
+* Transform vector and raster data;
+* Write and read spatial vector formats (e.g. KML, GML, GeoJSON and Shapefile);
+* Apply basic operations on vector data, such as masking and cropping;
+* Be able to extract raster data using vector data.
 
 ## Introduction
 
@@ -46,7 +46,7 @@ The GDAL library is well-documented (http://gdal.org/), but with a catch for R a
 
 Thus, functionality that you commonly find in expensive GIS software is also available within R, using free but very powerful software libraries. Here is [handy 'cheatsheet'](https://github.com/rstudio/cheatsheets/blob/master/sf.pdf) for spatial operations with *sf*. The functions of the *sf* package are prefixed by `st_`, short for 'spatial type'.
 
-The possibilities are huge. In this course we can only scratch the surface with some essentials, which hopefully invite you to experiment further and use them in your research. Details can be found in the book *Applied Spatial Data Analysis with R* and several vignettes authored by Roger Bivand, Edzer Pebesma and Virgilio Gomez-Rubio.
+The possibilities are huge. In this course we can only scratch the surface with some essentials, which hopefully invites you to experiment further and use them in your research. Details can be found in the book *Applied Spatial Data Analysis with R* and several vignettes authored by Roger Bivand, Edzer Pebesma and Virgilio Gomez-Rubio. This book can be accessed for free through the following [link](https://link.springer.com/book/10.1007/978-1-4614-7618-4)!
 
 ### Raster and vector integration and conversion
 
@@ -101,11 +101,11 @@ Raw raster data do not usually conform to any notion of administrative or geogra
 
 Step by step we will:
 
-- Download the Landsat 8 data of Wageningen
-- Download and prepare administrative boundary data of the Netherlands
-- Download Water area data of Wageningen
-- Mask the data to match the boundaries of the city
-- Mask the data to exclude water bodies
+1. Download the Landsat 8 data of Wageningen;
+2. Download and prepare administrative boundary data of the Netherlands;
+3. Download water area data of Wageningen;
+4. Mask the data to match the boundaries of the city;
+5. Mask the data to exclude water bodies.
 
 ## Prepare the data
 
@@ -140,10 +140,10 @@ We can start by visualizing the data. Since it is a multispectral image, we can 
 wagLandsat[wagLandsat < 0] <- NA
 
 # Band names can be changed here
-names(wagLandsat) <- c("band1", "band2", "band3", "band4", "band5", "band6", "band7") 
+names(wagLandsat) <- c("band1", "band2", "band3", "band4", "band5", "band6", "band7")
 
 # Select which bands to assign to the red, green, and blue colour channels
-plotRGB(wagLandsat, 5, 4, 3) 
+plotRGB(wagLandsat, 5, 4, 3)
 ```
 
 We have chosen to visualize the Landsat image as a false color composite, meaning that the chosen bands do not match the RGB channels. Indeed, we have plotted the near-infrared band as red, the red as green, and the green as blue.
@@ -207,7 +207,7 @@ In the figure above, the left panel displays the output of `crop`, while the sec
 We also have a water mask of Wageningen in vector format. Let's download it and also reproject it to the CRS of the Landsat data.
 
 ```{block type="alert alert-info"}
-Important functions are `st_read` and `st_write`. These are very powerful functions that enable reading and writing simple features or layers from a file or data base.
+Important functions are `st_read` and `st_write`. These are very powerful functions that enable reading and writing simple features or layers from a file or database.
 ```
 
 ```{r}
@@ -238,7 +238,7 @@ Also, some of our friends want these exact data too (e.g. the `water` polygon ob
 
 One friend of ours is a software engineer and he wants a GeoJSON. Another friend is a GIS-analyst in QGIS and as a backup he wants the file in Geographic Markup Language (GML). These fileformats (GeoJSON and GML, but also KML and Shapefile) are commonly used in spatial analysis. Let’s try to give them the files in those formats! 
 
-You can try for yourself and e.g. start by converting them to KML and opening them in Google My Maps (https://mymaps.google.com/).
+You can try for yourself and e.g. start by converting them to KML and opening them in [Google My Maps](https://mymaps.google.com/).
 
 
 ```{r, eval=FALSE}
